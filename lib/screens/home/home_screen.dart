@@ -1,4 +1,6 @@
+import 'package:collect_life_game/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,21 +21,27 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                 children: [
                   Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Image.asset(
-                        'assets/images/three_coin.webp',
-                        fit: BoxFit.cover,
+                    child: GestureDetector(
+                      onTap: () => Get.toNamed(AppRoute.pickMoneyScreen),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image.asset(
+                          'assets/images/tree_coin.webp',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(width: 10),
                   Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Image.asset(
-                        'assets/images/cave.webp',
-                        fit: BoxFit.cover,
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image.asset(
+                          'assets/images/cave.webp',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   )
