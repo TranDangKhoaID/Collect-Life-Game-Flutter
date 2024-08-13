@@ -1,5 +1,5 @@
 import 'package:collect_life_game/navigation_menu.dart';
-import 'package:collect_life_game/screens/pick_money/pick_money.dart';
+import 'package:collect_life_game/screens/pick_money/pick_money_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRoute {

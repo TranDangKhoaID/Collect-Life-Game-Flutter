@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'item_model.g.dart';
@@ -8,13 +10,24 @@ class ItemModel {
   String? name;
   String? type;
   String? img;
+  int? rarity;
+  int? quantity;
 
   ItemModel({
     required this.id,
     this.name,
     this.type,
     this.img,
+    this.rarity,
+    this.quantity,
   });
+
+  //
+  factory ItemModel.fromRawJson(String str) =>
+      ItemModel.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+  //
 
   factory ItemModel.fromJson(Map<String, dynamic> json) =>
       _$ItemModelFromJson(json);

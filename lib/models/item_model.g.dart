@@ -11,6 +11,8 @@ ItemModel _$ItemModelFromJson(Map<String, dynamic> json) => ItemModel(
       name: json['name'] as String?,
       type: json['type'] as String?,
       img: json['img'] as String?,
+      rarity: (json['rarity'] as num?)?.toInt(),
+      quantity: (json['quantity'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ItemModelToJson(ItemModel instance) => <String, dynamic>{
@@ -18,4 +20,6 @@ Map<String, dynamic> _$ItemModelToJson(ItemModel instance) => <String, dynamic>{
       'name': instance.name,
       'type': instance.type,
       'img': instance.img,
+      'rarity': instance.rarity,
+      'quantity': instance.quantity,
     };

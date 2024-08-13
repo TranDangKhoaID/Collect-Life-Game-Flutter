@@ -1,4 +1,5 @@
 import 'package:collect_life_game/screens/home/home_screen.dart';
+import 'package:collect_life_game/screens/my_bag/my_bag_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -58,9 +59,7 @@ class NavigationController extends GetxController {
       color: Colors.green,
     ),
     const HomeScreen(),
-    Container(
-      color: Colors.blue,
-    ),
+    const MyBagScreen(),
     Container(
       color: Colors.yellow,
     ),
