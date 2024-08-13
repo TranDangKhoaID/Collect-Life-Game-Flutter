@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:collect_life_game/screens/home/home_controller.dart';
+import 'package:collect_life_game/screens/home/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,11 +32,13 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                _controller.deleteAllCoin();
+              },
               child: Container(
                 color: Colors.red,
                 height: 50,
-                child: Text('Delete All Coin'),
+                child: Text(e.toString()),
               ),
             ),
             Text(
@@ -52,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
             GestureDetector(
               onTap: () {
                 _controller.pickItemLocal();
+                print(e.toString());
               },
               child: Image.asset(
                 width: 200,
