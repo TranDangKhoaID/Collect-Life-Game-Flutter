@@ -33,6 +33,16 @@ class _PickMoneyScreenState extends State<PickMoneyScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                GestureDetector(
+                  onTap: () {
+                    _controller.deleteAllCoin();
+                  },
+                  child: Container(
+                    color: Colors.red,
+                    height: 50,
+                    child: Text('Delete All Coin'),
+                  ),
+                ),
                 Text('tap_the_tree_to_pick_gold'),
                 SizedBox(
                   height: 50,
