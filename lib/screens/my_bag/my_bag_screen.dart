@@ -41,6 +41,7 @@ class _MyBagScreenState extends State<MyBagScreen> {
                 itemBuilder: (context, index) {
                   final item = snapshot.data![index];
                   return GridTile(
+                    header: Text(item.number.toString()),
                     footer: Text('x${item.quantity}'),
                     child: Padding(
                       padding: const EdgeInsets.all(10),

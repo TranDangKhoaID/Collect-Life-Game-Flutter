@@ -7,16 +7,17 @@ import 'package:collect_life_game/service/item_db.dart';
 import 'package:collect_life_game/storage/app_preference.dart';
 import 'package:get/get.dart';
 
-class PickMoneyController extends GetxController {
+class HomeController extends GetxController {
   //final _appPref = locator<AppPreference>();
   final _itemDB = locator<ItemDB>();
 
-  Future<void> pickMoneyLocal() async {
+  Future<void> pickItemLocal() async {
     try {
       await _itemDB.create(getCoin());
-      print('Thành công');
     } catch (e) {
       print('Error pick money $e');
+    } finally {
+      print('Thành công');
     }
   }
 
@@ -39,13 +40,15 @@ class PickMoneyController extends GetxController {
   }
 
   ItemModel getCoin() {
-    String coin_id = 'coin_gold_id';
+    String coin_id = 'item_id';
+    final number = getRandomNumberRarity();
     final item = ItemModel(
       id: coin_id,
       type: 'coin',
+      number: number,
       quantity: 1,
     );
-    switch (getRandomNumberRarity()) {
+    switch (number) {
       case 0:
         item.id = 'coin_gold_id';
         item.img = 'https://pngimg.com/uploads/coin/coin_PNG36907.png';
@@ -65,12 +68,13 @@ class PickMoneyController extends GetxController {
   }
 
   int getRandomNumberRarity() {
-    // Tỷ lệ độ hiếm cho các số từ 0 đến 1
-    List<int> rarityWeights = [50, 50];
+    // Tỷ lệ độ hiếm
+    List<int> rarityWeights = [50, 40, 10];
     int totalWeight = rarityWeights.reduce((a, b) => a + b);
     Random random = Random();
     int randomNumber = random.nextInt(totalWeight);
     int cumulativeWeight = 0;
+
     for (int i = 0; i < rarityWeights.length; i++) {
       cumulativeWeight += rarityWeights[i];
       if (randomNumber < cumulativeWeight) {

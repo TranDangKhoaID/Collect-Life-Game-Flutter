@@ -1,4 +1,7 @@
-import 'package:collect_life_game/routes.dart';
+import 'dart:async';
+import 'dart:math';
+
+import 'package:collect_life_game/screens/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,42 +13,50 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final _controller = Get.put(HomeController());
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
-      body: SafeArea(
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        alignment: Alignment.bottomCenter,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () => Get.toNamed(AppRoute.pickMoneyScreen),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: Image.asset(
-                          'assets/images/tree_coin.webp',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: Image.asset(
-                          'assets/images/cave.webp',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                color: Colors.red,
+                height: 50,
+                child: Text('Delete All Coin'),
+              ),
+            ),
+            Text(
+              'Nhấp, nhấp nữa, nhấp mãi',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            GestureDetector(
+              onTap: () {
+                _controller.pickItemLocal();
+              },
+              child: Image.asset(
+                width: 200,
+                'assets/images/treasure-chest.png',
+                fit: BoxFit.cover,
               ),
             )
           ],

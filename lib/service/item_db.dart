@@ -23,7 +23,8 @@ class ItemDB {
       "id" TEXT,
       "name" TEXT,
       "type" TEXT,
-      "img" TEXT,   
+      "img" TEXT,
+      "number" INTEGER,   
       "quantity" INTEGER,
       PRIMARY KEY("id")
     );
@@ -54,14 +55,15 @@ class ItemDB {
     } else {
       return await database.rawInsert(
         '''
-      INSERT INTO $tableName(id,name,type,img,quantity) 
-      VALUES (?,?,?,?,?)
+      INSERT INTO $tableName(id,name,type,img,number,quantity) 
+      VALUES (?,?,?,?,?,?)
         ''',
         [
           item.id,
           item.name,
           item.type,
           item.img,
+          item.number,
           item.quantity,
         ],
       );

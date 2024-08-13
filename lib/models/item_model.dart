@@ -10,6 +10,7 @@ class ItemModel {
   String? name;
   String? type;
   String? img;
+  int? number;
   int? quantity;
 
   ItemModel({
@@ -17,6 +18,7 @@ class ItemModel {
     this.name,
     this.type,
     this.img,
+    this.number,
     this.quantity,
   });
 
