@@ -1,5 +1,7 @@
 import 'dart:math';
+import 'dart:async';
 
+import 'package:collect_life_game/common/share_obs.dart';
 import 'package:collect_life_game/locator.dart';
 import 'package:collect_life_game/models/item_model.dart';
 import 'package:collect_life_game/service/database_service.dart';
@@ -13,6 +15,11 @@ class HomeController extends GetxController {
   final _itemDB = locator<ItemDB>();
 
   Future<void> pickItemLocal() async {
+    if (ShareObs.energy.value <= 0) {
+      print('Hihu');
+      return;
+    }
+    ShareObs.energy.value -= 1;
     try {
       await _itemDB.create(getCoin());
       print('Thành công');
@@ -89,5 +96,24 @@ class HomeController extends GetxController {
     }
     // Trong trường hợp không khớp (không xảy ra trong thực tế)
     return 0;
+  }
+
+  //timer e
+
+  Timer? energyTimer;
+
+  void startEnergyTimer() {
+    energyTimer = Timer.periodic(Duration(minutes: 1), (timer) {
+      ShareObs.energy.value += 1;
+
+      // Đảm bảo năng lượng không vượt quá giá trị tối đa nếu có
+      if (ShareObs.energy.value > 100) {
+        ShareObs.energy.value = 100;
+      }
+    });
+  }
+
+  void stopEnergyTimer() {
+    energyTimer?.cancel();
   }
 }

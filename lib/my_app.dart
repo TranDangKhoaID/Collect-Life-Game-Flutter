@@ -15,7 +15,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       onGenerateRoute: AppRoute.generateRoute,
       navigatorKey: Get.key,
-      initialRoute: AppRoute.navigationMenu,
+      initialRoute: AppRoute.splashScreen,
     );
     ;
   }
