@@ -49,17 +49,17 @@ class _HomeScreenState extends State<HomeScreen> {
               // ),
               Column(
                 children: [
-                  Obx(
-                    () => Text(
-                      '${ShareObs.energy.value}/100',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
+                  // Obx(
+                  //   () => Text(
+                  //     '${ShareObs.energy.value}/100',
+                  //     style: TextStyle(
+                  //       color: Colors.white,
+                  //       fontWeight: FontWeight.bold,
+                  //       fontSize: 20,
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(height: 20),
                   Text(
                     'Nhấp, nhấp nữa, nhấp mãi',
                     style: TextStyle(
@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: Image.asset(
                   width: 200,
-                  'assets/images/treasure-chest.png',
+                  'assets/images/chest.webp',
                   fit: BoxFit.cover,
                 ),
               ),

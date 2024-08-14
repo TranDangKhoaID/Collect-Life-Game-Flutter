@@ -1,11 +1,15 @@
+import 'package:collect_life_game/common/share_obs.dart';
+import 'package:collect_life_game/locator.dart';
 import 'package:collect_life_game/models/item_model.dart';
 import 'package:collect_life_game/service/database_service.dart';
+import 'package:collect_life_game/storage/app_preference.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sqflite/sqflite.dart';
 
 @lazySingleton
 class ItemDB {
   final tableName = 'items';
+  final _prefs = locator<AppPreference>();
 
   Future<void> dropTable() async {
     final database = await DatabaseService().database;
@@ -67,6 +71,43 @@ class ItemDB {
           item.quantity,
         ],
       );
+    }
+  }
+
+  Future<void> updateQuantity(String id, int quantityToSubtract) async {
+    final database = await DatabaseService().database;
+
+    // Kiểm tra xem id đã tồn tại chưa
+    final existing = await database.rawQuery(
+      '''
+    SELECT id, quantity FROM $tableName WHERE id = ?
+      ''',
+      [id],
+    );
+
+    if (existing.isNotEmpty) {
+      // Lấy quantity hiện tại
+      final currentQuantity = existing.first['quantity'] as int;
+      if (currentQuantity <= 0 || currentQuantity < quantityToSubtract) {
+        print('Số lượng = 0 hoặc bé hơn số lượng cần đổi');
+        return;
+      }
+      // Tính quantity mới
+      final newQuantity = currentQuantity - quantityToSubtract;
+      await database.rawUpdate(
+        '''
+        UPDATE $tableName 
+        SET quantity = ?
+        WHERE id = ?
+        ''',
+        [newQuantity, id],
+      );
+      ShareObs.cash.value += 1000000;
+      _prefs.saveCash(cash: ShareObs.cash.value);
+      print('Thành công');
+    } else {
+      print('id không tồn tại');
+      return;
     }
   }
 

@@ -7,14 +7,14 @@ class AppPreference {
   /// Save
 
   //ruby and coin
-  Future<void> saveCoin({
+  Future<void> saveCash({
     required double cash,
   }) async {
     final pref = await SharedPreferences.getInstance();
     pref.setDouble(AppPreferenceKey.kCash, cash);
   }
 
-  Future<double> getCoin() async {
+  Future<double> getCash() async {
     final pref = await SharedPreferences.getInstance();
     return pref.getDouble(AppPreferenceKey.kCash) ?? 0;
   }

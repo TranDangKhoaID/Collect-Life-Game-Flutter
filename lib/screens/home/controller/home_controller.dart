@@ -15,14 +15,13 @@ class HomeController extends GetxController {
   final _itemDB = locator<ItemDB>();
 
   Future<void> pickItemLocal() async {
-    if (ShareObs.energy.value <= 0) {
-      print('Hihu');
-      return;
-    }
-    ShareObs.energy.value -= 1;
+    // if (ShareObs.energy.value <= 0) {
+    //   print('Hihu');
+    //   return;
+    // }
+    // ShareObs.energy.value -= 1;
     try {
       await _itemDB.create(getCoin());
-      print('Thành công');
     } catch (e) {
       print('Error pick money $e');
     }
